@@ -33,7 +33,11 @@ class ProductController {
         price : req.body.price,
         stock : req.body.stock
       }
-      const data = await Product.update(params)
+      const data = await Product.update(params, {
+        where : {
+          id : req.params.id
+        }
+      })
       res.status(200).json(data)
     } catch (error) {
       next(error)
